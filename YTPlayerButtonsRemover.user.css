@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           YouTube Player Buttons Remover
 @namespace      https://github.com/pabli24
-@version        1.1.2
+@version        1.2.0
 @description    Choose which buttons you want to remove from the YouTube Player
 @author         Pabli
 @license        MIT
@@ -63,14 +63,43 @@
 @var            checkbox ico       "Show icons only"              0
 @var            number   p41       "*Chrome/Edge 105+, Opera 91+, Firefox 121+ or your browser has to support ':has()' selector. Also set youtube language to: English, Spanish or Polish" [4.1,4.1,4.1,4.1]
 
+@var            number   h5        		"▼ --- SIDEBAR --- ▼" [5,5,5]
+@var            checkbox sb-down   		"Downloads"					0
+@var            checkbox sb-shorts		"Shorts"					0
+@var            checkbox sb-channel		"Your channel"				0
+@var            checkbox sb-history		"History"					0
+@var            checkbox sb-playlists	"Playlists"					0
+@var            checkbox sb-videos		"Your videos"				0
+@var            checkbox sb-movies		"Your movies"				0
+@var            checkbox sb-podcasts	"Your podcasts"				0
+@var            checkbox sb-wl			"Watch Later"				0
+@var            checkbox sb-liked		"Liked videos"				0
+@var            checkbox sb-more		"Show more"					0
+@var            checkbox sb-pocket		"PocketTube extension"		0
+@var            checkbox sb-subs		"Subscriptions section"		0
+@var            checkbox sb-explore		"Explore section"			0
+@var            checkbox sb-premium		"YouTube Premium"			0
+@var            checkbox sb-studio		"YouTube Studio"			0
+@var            checkbox sb-music		"YouTube Music"				0
+@var            checkbox sb-kids		"YouTube Kids"				0
+@var            checkbox sb-tv			"YouTube TV"				0
+@var            checkbox sb-settings	"Settings"					0
+@var            checkbox sb-reports		"Report history"			0
+@var            checkbox sb-help		"Help"						0
+@var            checkbox sb-feeback		"Send feedback"				0
+@var            checkbox sb-footer		"Footer section"			0
+
 ==/UserStyle== */
 
 @-moz-document domain("youtube.com") {
 
 d() {display: none !important}
 
+/* REMOVE: */
 if hideall   {.ytp-chrome-bottom,.ytp-chrome-top,.annotation,.ytp-pause-overlay,.ytp-gradient-top,.ytp-gradient-bottom {d:n}}
 if gradient  {.ytp-gradient-top,.ytp-gradient-bottom {d:n}}
+
+/* ▲ --- PLAYER TOP --- ▲ */
 //            .ytp-chrome-top
 if titlec    {.ytp-title-channel {d:n}}
 if titley    {.ytp-title {d:n}}
@@ -81,10 +110,14 @@ if copylink  {.ytp-copylink-button {d:n}}
 if cards     {.ytp-cards-button {d:n}}
 if cardst    {.ytp-cards-teaser {d:n}}
 if overflowb {.ytp-overflow-button {d:n}}
+
+/* ▼ --- PLAYER BOTTOM --- ▼ */
 //            .ytp-chrome-bottom
 if morevideo {.ytp-pause-overlay {d:n}}
 if anno      {.annotation {d:n}}
 if prbar     {.ytp-progress-bar-container {d:n}}
+
+/* ◣ --- BOTTOM LEFT --- ◣ */
 //            .ytp-left-controls
 if prev      {.ytp-prev-button {d:n}}
 if play      {.ytp-play-button {d:n}}
@@ -92,6 +125,8 @@ if next      {.ytp-next-button {d:n}}
 if vol       {.ytp-volume-area {d:n}}
 if timed     {.ytp-time-display {d:n}}
 if chapter   {.ytp-chapter-container {d:n}}
+
+/* ◢ --- BOTTOM RIGHT --- ◢ */
 //            .ytp-right-controls
 if autonav   {[data-tooltip-target-id="ytp-autonav-toggle-button"] {d:n}}
 if fuller    {.ytp-fullerscreen-edu-button {d:n}}
@@ -103,6 +138,8 @@ if pipb      {#movie_player div.ytp-chrome-controls button.ytp-pip-button.ytp-bu
 if sizeb     {.ytp-size-button {d:n}}
 if remote    {.ytp-remote-button {d:n}}
 if full      {.ytp-fullscreen-button {d:n}}
+
+/* ▼ --- UNDER THE PLAYER --- ▼ */
 //            .top-level-buttons
 ytd = 'yt-button-view-model:has([aria-label*='
 if like      {ytd-menu-renderer segmented-like-dislike-button-view-model {d:n}}
@@ -127,4 +164,42 @@ if ico {
 	}
 }
 
+/* ▼ --- SIDEBAR --- ▼  */
+/* Home section */
+if sb-shorts {#endpoint.yt-simple-endpoint.ytd-guide-entry-renderer.style-scope[title="Shorts"] {d:n}}
+
+/* You section */
+if sb-channel {#endpoint.yt-simple-endpoint.ytd-guide-entry-renderer.style-scope[title="Your channel"] {d:n}}
+if sb-history {#endpoint.yt-simple-endpoint.ytd-guide-entry-renderer.style-scope[title="History"] {d:n}}
+if sb-playlists {#endpoint.yt-simple-endpoint.ytd-guide-entry-renderer.style-scope[title="Playlists"] {d:n}}
+if sb-videos {#endpoint.yt-simple-endpoint.ytd-guide-entry-renderer.style-scope[title="Your videos"] {d:n}}
+if sb-movies {#endpoint.yt-simple-endpoint.ytd-guide-entry-renderer.style-scope[title="Your movies"] {d:n}}
+if sb-podcasts {#endpoint.yt-simple-endpoint.ytd-guide-entry-renderer.style-scope[title="Your podcasts"] {d:n}}
+if sb-wl {#endpoint.yt-simple-endpoint.ytd-guide-entry-renderer.style-scope[title="Watch Later"] {d:n}}
+if sb-liked {#endpoint.yt-simple-endpoint.ytd-guide-entry-renderer.style-scope[title="Liked videos"] {d:n}}
+if sb-more {#endpoint.yt-simple-endpoint.ytd-guide-entry-renderer.style-scope[title="Show more"] {d:n}}
+if sb-pocket {#endpoint.yt-simple-endpoint.ytd-guide-entry-renderer.style-scope[title="PocketTube"] {d:n}}
+
+/* Subscription section */
+if sb-subs {#sections > ytd-guide-section-renderer:nth-child(2) {d:n}}
+
+/* Explore sectiom */
+if sb-explore {#sections > ytd-guide-section-renderer:nth-child(3) {d:n}}
+
+/* More from YouTube section */
+if sb-premium {#endpoint.yt-simple-endpoint.ytd-guide-entry-renderer.style-scope[title="YouTube Premium"] {d:n}}
+if sb-studio {#endpoint.yt-simple-endpoint.ytd-guide-entry-renderer.style-scope[title="YouTube Studio"] {d:n}}
+if sb-music {#endpoint.yt-simple-endpoint.ytd-guide-entry-renderer.style-scope[title="YouTube Music"] {d:n}}
+if sb-kids {#endpoint.yt-simple-endpoint.ytd-guide-entry-renderer.style-scope[title="YouTube Kids"] {d:n}}
+if sb-tv {#endpoint.yt-simple-endpoint.ytd-guide-entry-renderer.style-scope[title="YouTube TV"] {d:n}}
+if sb-premium and sb-studio and sb-music and sb-kids and sb-tv {#sections > ytd-guide-section-renderer:nth-child(4) {d:n}}
+
+/* Support & others section */
+if sb-settings {#endpoint.yt-simple-endpoint.ytd-guide-entry-renderer.style-scope[title="Settings"] {d:n}}
+if sb-reports {#endpoint.yt-simple-endpoint.ytd-guide-entry-renderer.style-scope[title="Report history"] {d:n}}
+if sb-help {#endpoint.yt-simple-endpoint.ytd-guide-entry-renderer.style-scope[title="Help"] {d:n}}
+if sb-feeback {#endpoint.yt-simple-endpoint.ytd-guide-entry-renderer.style-scope[title="Send feedback"] {d:n}}
+
+/* Footer */
+if sb-footer {#footer.style-scope.ytd-guide-renderer {d:n}}
 }
